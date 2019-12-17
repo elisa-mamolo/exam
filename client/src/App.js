@@ -148,7 +148,7 @@ class App extends Component {
 
                 <div className="container">
 
-                    {this.state.userCredentials.admin ? <Navigation></Navigation> : 'Not admin access'}
+                    {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not admin user'}
 
 
 
