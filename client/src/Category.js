@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from "@reach/router";
-
 class Category extends Component {
 
     render() {
@@ -34,7 +33,7 @@ class Category extends Component {
                 <ul>
                     {question.answers.length === 0 ? <p>No Answers!</p> : list}
                 </ul>
-                }
+                */}
                 {content}
                 {/*<AnswerCategory
                     addBook={(id, book) => this.props.addBook(id, book)}>

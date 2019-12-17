@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "@reach/router";
 
-
 class Categories extends Component {
 
     render() {
@@ -17,7 +16,7 @@ class Categories extends Component {
                             )}
                         </ol>
                         {/*<AskCategory askCategory={(category) => this.props.askCategory(category)}></AskCategory>*/}
-
+                        {/*<Link to="/">Go back to categories</Link>*/}
                     </React.Fragment>
                 );
 }

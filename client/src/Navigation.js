@@ -6,8 +6,10 @@ class Navigation extends Component {
 
     render() {
         return (
+            <div>
+            <Link to="/admin">ADMIN AREA</Link>
 
-                <Link to="/admin">Admin area</Link>
+            </div>
 
         );
     }

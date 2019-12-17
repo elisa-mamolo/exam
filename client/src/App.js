@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import { Link, Router } from "@reach/router";
 import Admin from "./Admin";
 import Categories from "./Categories";
 import Category from "./Category";
 import AuthService from './AuthService';
 import Login from "./Login";
 import Navigation from "./Navigation";
-import { Router } from "@reach/router"
 
 class App extends Component {
 
@@ -25,12 +25,12 @@ class App extends Component {
                 password: "123",
                 admin: true
             },
-        {
+       /* {
             //replace with login component that targets the state
             username: "giulia",
-            password: "password",
+                password: "password",
             admin: false
-        },]
+        }*/]
         };
     }
     componentDidMount() {
@@ -138,6 +138,9 @@ class App extends Component {
     }
 
     render() {
+
+        console.log(this.state.userCredentials.admin);
+
         return (
 
             <React.Fragment>
@@ -145,7 +148,7 @@ class App extends Component {
 
                 <div className="container">
 
-                    {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not admin user'}
+                    {this.state.userCredentials.admin ? <Navigation></Navigation> : 'Not admin access'}
 
 
 
