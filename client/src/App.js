@@ -5,7 +5,7 @@ import Category from "./Category";
 import AuthService from './AuthService';
 import Login from "./Login";
 import Navigation from "./Navigation";
-import { Router, Link } from "@reach/router"
+import { Router } from "@reach/router"
 
 class App extends Component {
 
@@ -28,9 +28,9 @@ class App extends Component {
         {
             //replace with login component that targets the state
             username: "giulia",
-                password: "password",
+            password: "password",
             admin: false
-        }]
+        },]
         };
     }
     componentDidMount() {
@@ -138,9 +138,6 @@ class App extends Component {
     }
 
     render() {
-
-        console.log(this.state.userCredentials.admin);
-
         return (
 
             <React.Fragment>
@@ -148,7 +145,7 @@ class App extends Component {
 
                 <div className="container">
 
-                    {this.state.userCredentials.admin ? <Navigation></Navigation> : 'Not admin user'}
+                    {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not admin user'}
 
 
 

@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {navigate} from "@reach/router";
+
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
                 username: "",
-                password: ""
-
-
+                password: "",
         }
     }
 

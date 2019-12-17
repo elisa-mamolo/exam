@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "@reach/router";
-import AskCategory from "./AskCategory";
-import Login from "./Login";
+
 
 class Categories extends Component {
 
