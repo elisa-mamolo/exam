@@ -41,6 +41,7 @@ class Db {
     async removeCategory(id) {
         try {
             return await this.shopModel.findOne({_id: id});
+            this.getCategories();
         } catch (error) {
             console.error("removeCategory:", error.message);
             return {};

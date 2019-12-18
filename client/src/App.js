@@ -6,7 +6,6 @@ import Category from "./Category";
 import AuthService from './AuthService';
 import Login from "./Login";
 import Navigation from "./Navigation";
-import AnswerCategory from "./AnswerCategory";
 
 class App extends Component {
 
@@ -33,6 +32,7 @@ class App extends Component {
             admin: false
         }]
         };
+
     }
     componentDidMount() {
 
@@ -82,7 +82,7 @@ class App extends Component {
         })
     }
 
-    //method for posting a question
+    //method for posting a category
     async askCategory(category){
 
         this.postData(category);
@@ -141,6 +141,7 @@ class App extends Component {
         return this.state.categories.find(q => q._id === id)
     }
 
+
     render() {
 
         console.log(this.state.userCredentials.admin);
@@ -182,7 +183,9 @@ class App extends Component {
                     </Login>
                     <Admin path="/admin"
                            categories={this.state.categories}
-                           askCategory={(text) => this.askCategory(text)}></Admin>
+                           askCategory={(text) => this.askCategory(text)}
+                           removeItem={this.props.removeItem}></Admin>
+
 
 
                 </Router>
