@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import {Link} from "@reach/router";
 import AskCategory from "./AskCategory";
 
-
 class Admin extends Component {
+
+    removeCategory(event){
+
+    }
 
     render() {
         return (
@@ -13,7 +16,7 @@ class Admin extends Component {
                     {this.props.categories.map(category =>
                         <li key={category._id}>
                             <Link to={`/category/${category._id}`}>{category.category}</Link>
-
+                            <button onClick={(event) => this.removeCategory()}>Delete category</button>
                         </li>
                     )}
                 </ol>

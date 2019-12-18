@@ -14,7 +14,7 @@ const app = express();
 //configure libraries
 app.use(cors());
 app.use(bodyParser.json()); // Parse JSON from the request body
-app.use(bodyParser.urlencoded({extended: false}));
+//app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('combined')); // Log all requests to the console
 app.use(express.static('../client/build')); // Only needed when running build in production mode
 
@@ -86,7 +86,7 @@ app.get('/api/categories/:id', (req, res) => {
     shopDAL.getCategory(id).then(category => res.json(category));
 });
 
-//get book by id
+//get book by id - not working
 app.get('/api/books/:id', (req, res) => {
     let id = req.params.id;
     shopDAL.getCategory(id).then(category => res.json(category));
@@ -109,7 +109,17 @@ app.post('/api/categories/:id/books', (req, res) => {
         .then(updatedCategory => res.json(updatedCategory));
 });
 
+app.get("/api/categories/:id/books/:id", (request, response) => {
+    let id = request.params.id;
+    let bookId =  request.params.id;
+    shopDAL.getBook(id, bookId).then(book => response.json(book));
+});
 
+//delete question - not implemented
+app.delete('/api/categories/:id', (req, res)=>{
+    const id = req.params.id;
+    shopDAL.removeCategory(id).then(category => res.json(category.remove()))
+});
 
 // "Redirect" all get requests (except for the routes specified above) to React's entry point (index.html) to be handled by Reach router
 // It's important to specify this route as the very last one to prevent overriding all of the other routes
@@ -119,7 +129,8 @@ app.get('*', (req, res) =>
 
 /**** Start ****/
 const url = (process.env.MONGO_URL || 'mongodb://localhost/shopLogin_db');
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
+
+return mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
     //when it is connected i listen to my api
     .then(async () => {
         await shopDAL.bootstrap(); // Fill in test data if needed.

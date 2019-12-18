@@ -3,6 +3,7 @@ import {Link} from "@reach/router";
 
 class Categories extends Component {
 
+
     render() {
                 return (
                     <React.Fragment>

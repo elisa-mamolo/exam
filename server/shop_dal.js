@@ -2,6 +2,7 @@ const mongoose = require('mongoose'); // We need the mongoose library
 
 //class where i have hidden all the access to db
 class Db {
+
     constructor() {
         //defines how question schema looks
         // This is the schema we need to store questions in MongoDB
@@ -29,13 +30,19 @@ class Db {
     }
 
     async getCategory(id) {
-        this.shopModel.findById = async function (id) {
-            
-        }
         try {
-            return await this.shopModel.findById(id);
+            return await this.shopModel.findOne({_id: id});
         } catch (error) {
             console.error("getCategory:", error.message);
+            return {};
+        }
+    }
+
+    async removeCategory(id) {
+        try {
+            return await this.shopModel.findOne({_id: id});
+        } catch (error) {
+            console.error("removeCategory:", error.message);
             return {};
         }
     }
@@ -67,14 +74,28 @@ class Db {
         }
     }
 
-    getBook(category, bookId){
+
+    getBook(id, bookId){
+        //let id = this.getCategory(id);
+        let book = id.books.find(book => book._id == bookId);
         try{
-            return category.books.find(book => book._id == bookId);
+            return book;
         } catch{
             console.log("getBook", error.message);
             return {};
         }
     }
+
+    /*getBook(categoryId, bookId) {
+        const categoryId = this.getCategory(id);
+        let bookId = this.categoryId.books.find(book => book._id == bookId);
+        try {
+            return book
+        } catch (error) {
+            console.error("getBook:", error.message);
+            return {};
+        }
+    }*/
 
     /**
      * This method adds a bunch of test data if the database is empty.
