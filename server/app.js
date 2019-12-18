@@ -14,6 +14,7 @@ const app = express();
 //configure libraries
 app.use(cors());
 app.use(bodyParser.json()); // Parse JSON from the request body
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('combined')); // Log all requests to the console
 app.use(express.static('../client/build')); // Only needed when running build in production mode
 

@@ -53,12 +53,18 @@ class Db {
     }
 
 
-    async addBook(id, text) {
+    async addBook(id, book) {
         // TODO: Error handling
         //get category by id
         const category = await this.getCategory(id);
+        console.log("category" + category.books);
         category.books.push(book);
-        return category.save();
+        try {
+            return category.save();
+        } catch (error) {
+            console.error("addBook:", error.message);
+            return {};
+        }
     }
 
     getBook(category, bookId){

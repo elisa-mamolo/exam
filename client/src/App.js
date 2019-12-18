@@ -6,6 +6,7 @@ import Category from "./Category";
 import AuthService from './AuthService';
 import Login from "./Login";
 import Navigation from "./Navigation";
+import AnswerCategory from "./AnswerCategory";
 
 class App extends Component {
 
@@ -25,12 +26,12 @@ class App extends Component {
                 password: "123",
                 admin: true
             },
-       /* {
+       {
             //replace with login component that targets the state
             username: "giulia",
                 password: "password",
             admin: false
-        }*/]
+        }]
         };
     }
     componentDidMount() {
@@ -57,7 +58,7 @@ class App extends Component {
         event.preventDefault();
         this.Auth.logout();
         await this.setState({
-            userCredentials: {},
+            userCredentials: [],
             categories: []
         });
     }
@@ -111,9 +112,12 @@ class App extends Component {
 
     //the above method calls this method for the post request
     async addBook(id, book) {
-        let url = `${this.API_URL}/categories`;
+        let url = `${this.API_URL}/categories/`
+            .concat(id)
+            .concat("/books");
         fetch(url, {
             method: "POST",
+            dataType: "json",
             body: JSON.stringify({
                 book: book
             }), headers : {
@@ -151,11 +155,9 @@ class App extends Component {
                     {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not admin user'}
 
 
-
-
                     {this.Auth.getUsername() ?
                         <small>Logged in: {this.Auth.getUsername()}.
-
+                            <Link to="/">Post a book</Link>
                             <button
                             onClick={(event) => {this.logout(event)}}>Logout.</button>
                         </small>
@@ -181,6 +183,7 @@ class App extends Component {
                     <Admin path="/admin"
                            categories={this.state.categories}
                            askCategory={(text) => this.askCategory(text)}></Admin>
+
 
                 </Router>
 

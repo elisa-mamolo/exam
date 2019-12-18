@@ -1,9 +1,56 @@
 import React, {Component} from 'react';
 import {Link} from "@reach/router";
 class Category extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            category: "",
+            books: [{
+                title: "",
+                author: "",
+                category: "",
+                price: "",
+                user: "",
+                email: ""
+            }]
 
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    //on submit handle inputs of all the fields
+    handleSubmit(event) {
+        event.preventDefault();
+        const inputs = event.target.getElementsByTagName("input");
+        this.setState({
+            category: this.props.getCategory(this.props.id),
+            books: [
+                {
+                    title: inputs.title.value,// should match the name attribute on the input element
+                    author: inputs.author.value,
+                    category: inputs.category.value,
+                    price: inputs.price.value,
+                    user: inputs.user.value,
+                    email: inputs.email.value,
+                }
+            ]
+
+        });
+        //this.props.addBook(this.props.id, this.state.book);
+        this.props.addBook(this.props.getCategory(this.props.id, this.state.book));
+        console.log(this.state.book);
+        console.log(this.props.getCategory(this.props.id));
+        let category = this.props.getCategory(this.props.id);
+        console.log(category);
+
+
+    }
+
+
+
+    //need to make the api call
     render() {
         const category = this.props.getCategory(this.props.id);
+
 
         /*const list = question.answers.map(ans => <li>{ans.text}
             - ({ans.votes})</li>);*/
@@ -22,7 +69,35 @@ class Category extends Component {
 
 
                     </ul>
-
+                    <form onSubmit={this.handleSubmit}>
+                        <div>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" name="title"/>
+                        </div>
+                        <div>
+                        <label htmlFor="author">Author</label>
+                        <input type="text" name="author"/>
+                        </div>
+                        <div>
+                        <label htmlFor="category">Category</label>
+                        <input type="text" name="category"/>
+                        </div>
+                        <div>
+                        <label htmlFor="price">Price</label>
+                        <input type="text" name="price"/>
+                        </div>
+                        <div>
+                        <label htmlFor="user">User</label>
+                        <input type="text" name="user" />
+                        </div>
+                        <div>
+                        <label htmlFor="email">Email</label>
+                        <input type="text" name="email" />
+                        </div>
+                        <div>
+                        <input type="submit" value="Submit"/>
+                        </div>
+                    </form>
                 </React.Fragment>
         }
         return (
