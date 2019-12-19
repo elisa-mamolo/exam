@@ -72,7 +72,7 @@ class App extends Component {
     }
 
 
-    //method foe getting the questions
+    //method foe getting the categories
     async getCategories() {
         let url = `${this.API_URL}/categories`;
         let result = await fetch(url); //get the data
@@ -126,7 +126,7 @@ class App extends Component {
             })
     }
 
-    //the above method calls this method for the post request
+
     async addBook(id, book) {
         let url = `${this.API_URL}/categories/`
             .concat(id)

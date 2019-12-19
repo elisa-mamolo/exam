@@ -36,13 +36,12 @@ class Category extends Component {
 
         });
         //this.props.addBook(this.props.id, this.state.book);
-
-
+        this.props.addBook(this.props.getCategory(this.props.id), this.state.book);
+        console.log(this.state.book);
         console.log(this.props.getCategory(this.props.id));
-        let category = this.props.getCategory(this.props.id)._id;
-        console.log(category)
+        let category = this.props.getCategory(this.props.id);
+        console.log(category);
 
-        this.props.addBook(category, this.state.books);
 
     }
 
@@ -59,9 +58,9 @@ class Category extends Component {
         if (category) {
             content =
                 <React.Fragment>
-                    <h4>Category: {category.category}</h4>
+                    <h4>{category.category}</h4>
 
-                    <h4>Books</h4>
+                    <h6>Books</h6>
                     <ul>
                         {/*_id to have an unique key */}
                         {category.books.map(q => <li key={q._id}>
