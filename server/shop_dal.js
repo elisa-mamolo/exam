@@ -76,8 +76,8 @@ class Db {
 
 
     getBook(id, bookId){
-        //let id = this.getCategory(id);
-        let book = id.books.find(book => book._id == bookId);
+        let category = this.getCategory(id);
+        let book = category.books.find(book => book._id == bookId);
         try{
             return book;
         } catch{
