@@ -5,23 +5,11 @@ import AskCategory from "./AskCategory";
 class Admin extends Component {
     constructor(props) {
         super(props);
-
-        this.onClickClose = this.onClickClose.bind(this);
-
-    }
-    onClickClose() {
-        let index = this.props.index;
-
-        this.props.removeItem(index);
-    }
-    onClick(){
-        //this.props.removeCategory();
-        console.log(this.props.categories);
-
+        this.removeCategory = this.removeCategory.bind(this);
 
     }
-    handleCheck(e) {
-        console.log(e.target.key);
+    removeCategory(event) {
+        this.props.removeCategory(this.props.id);
     }
 
     render() {
@@ -33,7 +21,7 @@ class Admin extends Component {
                         <li key={category._id}  >
                             <Link to={`/category/${category._id}`}>{category.category}</Link>
                             {/*<button onClick={this.handleCheck}>Delete category</button>*/}
-                            <button onClick={this.onClickClose} key={category._id}>Delete category</button>
+                            <button onClick={() => this.props.removeCategory(category._id)}>Delete category</button>
                         </li>
                     )}
                 </ol>

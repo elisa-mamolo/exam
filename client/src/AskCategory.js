@@ -28,7 +28,7 @@ class AskCategory extends Component {
                        type="text"
                        placeholder="Type category here!">
                 </input>
-                <button onClick={() => this.onClick()}>Ask!</button>
+                <button onClick={() => this.onClick()}>Add Category</button>
             </React.Fragment>
         )
     }

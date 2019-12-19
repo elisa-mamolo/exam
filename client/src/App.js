@@ -109,6 +109,22 @@ class App extends Component {
           //  questions: json //set it in the state
         //})
     }
+    async removeCategory(id) {
+        let url = `${this.API_URL}/categories/`
+            .concat(id);
+        fetch(url, {
+            method: "DELETE",
+            dataType: "json",
+            headers: {
+                "Content-type": "application/json",
+                Authorization: "Bearer " + this.Auth.getToken()
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                this.getCategories();
+            })
+    }
 
     //the above method calls this method for the post request
     async addBook(id, book) {
@@ -183,8 +199,9 @@ class App extends Component {
                     </Login>
                     <Admin path="/admin"
                            categories={this.state.categories}
+                           getCategory={id => this.getCategory(id)}
                            askCategory={(text) => this.askCategory(text)}
-                           removeItem={this.props.removeItem}></Admin>
+                           removeCategory={id => this.removeCategory(id)}></Admin>
 
 
 

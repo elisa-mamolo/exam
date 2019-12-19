@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "@reach/router";
+import AnswerCategory from "./AnswerCategory";
 class Category extends Component {
     constructor(props) {
         super(props);
@@ -36,11 +37,11 @@ class Category extends Component {
 
         });
         //this.props.addBook(this.props.id, this.state.book);
-        this.props.addBook(this.props.getCategory(this.props.id, this.state.book));
-        console.log(this.state.book);
-        console.log(this.props.getCategory(this.props.id));
+        this.props.addBook(this.props.getCategory(this.props.id), this.state.book);
+        console.log(this.state.books);
+
         let category = this.props.getCategory(this.props.id);
-        console.log(category);
+
 
 
     }

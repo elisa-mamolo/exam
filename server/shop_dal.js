@@ -65,7 +65,6 @@ class Db {
         // TODO: Error handling
         //get category by id
         const category = await this.getCategory(id);
-        console.log("category" + category.books);
         category.books.push(book);
         try {
             return category.save();
@@ -86,17 +85,6 @@ class Db {
             return {};
         }
     }
-
-    /*getBook(categoryId, bookId) {
-        const categoryId = this.getCategory(id);
-        let bookId = this.categoryId.books.find(book => book._id == bookId);
-        try {
-            return book
-        } catch (error) {
-            console.error("getBook:", error.message);
-            return {};
-        }
-    }*/
 
     /**
      * This method adds a bunch of test data if the database is empty.
