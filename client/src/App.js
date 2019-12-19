@@ -6,6 +6,7 @@ import Category from "./Category";
 import AuthService from './AuthService';
 import Login from "./Login";
 import Navigation from "./Navigation";
+import Book from "./Book";
 
 class App extends Component {
 
@@ -126,7 +127,7 @@ class App extends Component {
             })
     }
 
-
+    //passing category id and the book
     async addBook(id, book) {
         let url = `${this.API_URL}/categories/`
             .concat(id)
@@ -157,38 +158,31 @@ class App extends Component {
         return this.state.categories.find(q => q._id === id)
     }
 
-
     render() {
 
-        console.log(this.state.userCredentials.admin);
 
         return (
 
             <React.Fragment>
-                <h1>Book shop</h1>
+                <h2>Book shop</h2>
 
                 <div className="container">
-
-                    {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not an admin user - no access to admin area'}
-
+                    {/*use the same inline condition of login adapted for checking if user is admin*/}
+                    {(this.Auth.getUsername() === "elisa") ? <Navigation></Navigation> : 'Not an admin user - no access'}
 
                     {this.Auth.getUsername() ?
-                        <small>Logged in: {this.Auth.getUsername()}.
-                            <Link to="/">Post a book</Link>
+                        <div>Logged in: {this.Auth.getUsername()}.
+                            <div><Link to="/">Post a book</Link></div>
+
                             <button
                             onClick={(event) => {this.logout(event)}}>Logout.</button>
-                        </small>
+                        </div>
                         : <Login login={(username, password) => this.login(username, password)}/>}
-
-
                 </div>
-
-
                 <Router>
-
                     <Categories path="/" categories={this.state.categories}
-                                askCategory={(text) => this.askCategory(text)}/>
-
+                                askCategory={(text) => this.askCategory(text)}>
+                    </Categories>
                     <Category
                         addBook={(id, book) => this.addBook(id, book)}
                         path="/category/:id"
@@ -201,10 +195,12 @@ class App extends Component {
                            categories={this.state.categories}
                            getCategory={id => this.getCategory(id)}
                            askCategory={(text) => this.askCategory(text)}
-                           removeCategory={id => this.removeCategory(id)}></Admin>
-
-
-
+                           removeCategory={id => this.removeCategory(id)}>
+                    </Admin>
+                    <Book path="/category:id/books/:id"
+                          categories={this.state.categories}
+                          getCategory={id => this.getCategory(id)}>
+                    </Book>
                 </Router>
 
             </React.Fragment>

@@ -86,8 +86,14 @@ app.get('/api/categories/:id', (req, res) => {
     shopDAL.getCategory(id).then(category => res.json(category));
 });
 
-//get book by id - not working
+/*//get book by id - not working
 app.get('/api/books/:id', (req, res) => {
+    let id = req.params.id;
+    shopDAL.getCategory(id).then(category => res.json(category));
+});*/
+
+//get book by id - not working
+app.get('/api/category/:id/books/:id', (req, res) => {
     let id = req.params.id;
     shopDAL.getCategory(id).then(category => res.json(category));
 });
@@ -109,13 +115,14 @@ app.post('/api/categories/:id/books', (req, res) => {
         .then(updatedCategory => res.json(updatedCategory));
 });
 
+//get book by id for book details
 app.get("/api/categories/:id/books/:id", (request, response) => {
     let id = request.params.id;
     let bookId =  request.params.id;
     shopDAL.getBook(id, bookId).then(book => response.json(book));
 });
 
-//delete question - not implemented
+//delete question
 app.delete('/api/categories/:id', (req, res)=>{
     const id = req.params.id;
     shopDAL.removeCategory(id).then(category => res.json(category.remove()))

@@ -25,7 +25,9 @@ class Category extends Component {
             category: this.props.getCategory(this.props.id),
             books: [
                 {
-                    title: inputs.title.value,// should match the name attribute on the input element
+                    //get the name and value of input fields and set it
+                    //as new state
+                    title: inputs.title.value,
                     author: inputs.author.value,
                     category: inputs.category.value,
                     price: inputs.price.value,
@@ -41,34 +43,28 @@ class Category extends Component {
         console.log(this.props.getCategory(this.props.id));
         let category = this.props.getCategory(this.props.id);
         console.log(category);
-
-
     }
 
-
-
-    //need to make the api call
     render() {
         const category = this.props.getCategory(this.props.id);
 
-
-        /*const list = question.answers.map(ans => <li>{ans.text}
-            - ({ans.votes})</li>);*/
         let content = <p>Loading</p>
         if (category) {
             content =
                 <React.Fragment>
-                    <h4>{category.category}</h4>
+                    <h3>Category: {category.category}</h3>
 
-                    <h6>Books</h6>
+                    <h3>Books</h3>
                     <ul>
                         {/*_id to have an unique key */}
                         {category.books.map(q => <li key={q._id}>
-                            <Link to={`/books/${q._id}`}>{q.title}</Link>
+                            <Link to={`/category/${category._id}/books/${q._id}`}>
+                                {q.title}   Author: {q.author}</Link>
                         </li>)}
 
 
                     </ul>
+                    <h3>Post a book</h3>
                     <form onSubmit={this.handleSubmit}>
                         <div>
                         <label htmlFor="title">Title</label>

@@ -25,7 +25,7 @@ class Admin extends Component {
                         <li key={category._id}  >
                             <Link to={`/category/${category._id}`}>{category.category}</Link>
 
-                            <button onClick={() => this.props.removeCategory(category._id)}>Delete category</button>
+                            <button onClick={() => this.props.removeCategory(category._id)}>Remove category</button>
                         </li>
                     )}
                 </ol>

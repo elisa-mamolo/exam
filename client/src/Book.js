@@ -21,15 +21,14 @@ class Book extends Component {
                             User: {q.user}
                             Email: {q.email}
                         </li>)}
-
-
                     </ul>
-
+                    <Link to="/">Go back to categories</Link>
                 </React.Fragment>
         }
         return (
             <React.Fragment>
-                {/*<h3>Question!</h3>
+                <h3>Books!</h3>
+                {/*
                 <p key={question.id}>{question.question}</p>
 
                 <ul>
