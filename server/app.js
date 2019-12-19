@@ -9,7 +9,7 @@ const checkJwt = require('express-jwt');    // Check for access tokens automatic
 const bcrypt = require('bcryptjs');         // Used for hashing passwords!
 
 /**** Configuration ****/
-const port = (process.env.PORT || 8000);
+const port = (process.env.PORT || 8080);
 const app = express();
 //configure libraries
 app.use(cors());
